@@ -27,7 +27,7 @@ WORKDIR /app
 COPY --from=builder /app ./
 RUN npm install --omit=dev
 
-EXPOSE 3000
+EXPOSE 8080
 
 # Run the Next.js app
 CMD ["npm", "start"]
