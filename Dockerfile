@@ -1,22 +1,16 @@
 FROM node:20-alpine as builder
 
-# Accept build-time environment variable
-# ARG NEXT_PUBLIC_API_URL
-# ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
-
 # Set working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package files and install dependencies (include dev dependencies)
 COPY package*.json ./
 RUN npm install
 
 # Copy the rest of your app
 COPY . .
 
-#RUN echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL"
-
-# Build the Next.js app
+# Build the Next.js app (or any build step)
 RUN npm run build
 
 # Production image
@@ -24,10 +18,13 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+# Copy the application code from the builder stage
 COPY --from=builder /app ./
-RUN npm install --omit=dev
+
+# Install all dependencies, including dev dependencies (do not omit dev)
+RUN npm install
 
 EXPOSE 8080
 
-# Run the Next.js app
+# Run the application in development mode
 CMD ["npm", "run", "dev"]
