@@ -24,7 +24,7 @@ COPY --from=builder /app ./
 # Install all dependencies, including dev dependencies (do not omit dev)
 RUN npm install
 
-EXPOSE 8080
+EXPOSE 3000
 
 # Run the application in development mode
 CMD ["npm", "run", "dev"]
