@@ -30,4 +30,4 @@ RUN npm install --omit=dev
 EXPOSE 8080
 
 # Run the Next.js app
-CMD ["npm", "start"]
+CMD ["npm", "dev"]
