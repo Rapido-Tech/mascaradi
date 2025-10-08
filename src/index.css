@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Car Dealership Design System - Kenya Auto Prime */
+
+@layer base {
+  :root {
+    /* Premium Color Palette */
+    --background: 0 0% 98%;
+    --foreground: 218 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 218 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 25% 15%;
+
+    /* Primary - Deep Navy Blue */
+    --primary: 218 45% 12%;
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 218 45% 18%;
+
+    /* Secondary - Charcoal Gray */
+    --secondary: 220 8% 25%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Accent - Premium Gold */
+    --accent: 45 90% 58%;
+    --accent-foreground: 218 45% 12%;
+
+    /* Muted - Light Gray */
+    --muted: 220 10% 96%;
+    --muted-foreground: 220 8% 45%;
+
+    /* Success - For available cars */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+
+    /* Warning - For limited stock */
+    --warning: 38 92% 50%;
+    --warning-foreground: 218 45% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 218 45% 12%;
+
+    --radius: 0.75rem;
+
+    /* Premium Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(218 45% 12%), hsl(218 45% 18%));
+    --gradient-hero: linear-gradient(135deg, hsl(218 45% 12%) 0%, hsl(220 8% 25%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 10% 98%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(45 90% 58%) 0%, hsl(45 85% 65%) 100%);
+
+    /* Shadows */
+    --shadow-premium: 0 20px 40px -12px hsl(218 45% 12% / 0.15);
+    --shadow-card: 0 8px 32px -8px hsl(218 45% 12% / 0.12);
+    --shadow-hover: 0 12px 40px -8px hsl(218 45% 12% / 0.18);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-premium: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  }
+
+  .dark {
+    --background: 218 45% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 218 40% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 218 40% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 45 90% 58%;
+    --primary-foreground: 218 45% 12%;
+    --primary-hover: 45 85% 65%;
+
+    --secondary: 220 8% 20%;
+    --secondary-foreground: 0 0% 95%;
+
+    --accent: 45 90% 58%;
+    --accent-foreground: 218 45% 12%;
+
+    --muted: 218 40% 15%;
+    --muted-foreground: 220 8% 65%;
+
+    --success: 142 76% 40%;
+    --success-foreground: 0 0% 95%;
+
+    --warning: 38 92% 55%;
+    --warning-foreground: 218 45% 12%;
+
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 218 40% 20%;
+    --input: 218 40% 20%;
+    --ring: 45 90% 58%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(218 45% 8%), hsl(218 40% 12%));
+    --gradient-hero: linear-gradient(135deg, hsl(218 45% 8%) 0%, hsl(220 8% 15%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(218 40% 10%) 0%, hsl(218 40% 12%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(45 90% 58%) 0%, hsl(45 85% 65%) 100%);
+
+    --shadow-premium: 0 20px 40px -12px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.3);
+    --shadow-hover: 0 12px 40px -8px hsl(0 0% 0% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Premium Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/30;
+  }
+}
+
+@layer components {
+  /* Premium Button Variants */
+  .btn-premium {
+    @apply bg-gradient-to-r from-primary to-primary-hover text-primary-foreground px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+
+  .btn-accent {
+    @apply bg-gradient-to-r from-accent to-accent/90 text-accent-foreground px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+
+  /* Premium Card Effects */
+  .card-premium {
+    @apply bg-card border border-border/50 rounded-2xl p-6 shadow-[var(--shadow-card)] transition-all duration-300 hover:shadow-[var(--shadow-hover)] hover:scale-[1.02];
+  }
+
+  /* Glass Effect */
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  /* Premium Gradient Text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Kenya Currency Formatting */
+  .currency-kes::before {
+    content: "KES ";
+    @apply text-muted-foreground text-sm;
+  }
+}
