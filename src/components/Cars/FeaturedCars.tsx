@@ -20,11 +20,17 @@ const FeaturedCars = () => {
       transmission: "Automatic",
       seats: 7,
       condition: "Certified" as const,
-      features: ["Leather Seats", "Sunroof", "Navigation", "AWD", "Heated Seats"],
+      features: [
+        "Leather Seats",
+        "Sunroof",
+        "Navigation",
+        "AWD",
+        "Heated Seats",
+      ],
       isPopular: true,
     },
     {
-      id: "2", 
+      id: "2",
       name: "911 Carrera",
       brand: "Porsche",
       price: 15000000,
@@ -40,7 +46,23 @@ const FeaturedCars = () => {
     {
       id: "3",
       name: "E-Class E300",
-      brand: "Mercedes-Benz", 
+      brand: "Mercedes-Benz",
+      price: 6200000,
+      originalPrice: 6800000,
+      image: carSedan,
+      year: 2022,
+      mileage: "25,000 km",
+      fuelType: "Petrol",
+      transmission: "9G-Tronic",
+      seats: 5,
+      condition: "Used" as const,
+      features: ["AMG Line", "MBUX", "Air Suspension", "Premium Audio"],
+      isPopular: true,
+    },
+    {
+      id: "4",
+      name: "E-Class E301",
+      brand: "Mercedes-Benz",
       price: 6200000,
       originalPrice: 6800000,
       image: carSedan,
@@ -64,8 +86,8 @@ const FeaturedCars = () => {
             Featured <span className="text-gradient">Premium Vehicles</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Handpicked selection of our finest vehicles, featuring the latest models 
-            and certified pre-owned luxury cars.
+            Handpicked selection of our finest vehicles, featuring the latest
+            models and certified pre-owned luxury cars.
           </p>
         </div>
 
