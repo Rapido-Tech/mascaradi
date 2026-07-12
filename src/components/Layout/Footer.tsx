@@ -1,13 +1,14 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Instagram, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
   Linkedin,
   Clock,
   Send
@@ -17,11 +18,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "About Us", href: "#about" },
-    { name: "Our Inventory", href: "#inventory" },
-    { name: "Financing", href: "#financing" },
-    { name: "Trade-In", href: "#trade" },
-    { name: "Contact", href: "#contact" },
+    { name: "About Us", href: "/about" },
+    { name: "Our Inventory", href: "/inventory" },
+    { name: "Financing", href: "/financing" },
+    { name: "Services", href: "/services" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const services = [
@@ -88,13 +89,13 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-accent">Quick Links</h4>
             <nav className="space-y-2">
               {quickLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="block text-primary-foreground/80 hover:text-accent transition-colors text-sm"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

@@ -1,8 +1,11 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { X, Plus, GitCompare } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 interface CompareCar {
   id: string;
@@ -76,9 +79,11 @@ const QuickCompare = () => {
                 key={car.id}
                 className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg"
               >
-                <img
+                <Image
                   src={car.image}
                   alt={`${car.brand} ${car.name}`}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-lg object-cover"
                 />
                 <div className="flex-1 min-w-0">

@@ -1,0 +1,50 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// SQLite has no native enum support, so Condition ("New" | "Used" | "Certified")
+// and Lead.source ("contact" | "financing") are plain strings validated in app code.
+
+model Car {
+  id            String   @id @default(cuid())
+  name          String
+  brand         String
+  price         Int
+  originalPrice Int?
+  image         String
+  images        String? // comma-separated extra gallery photo URLs, beyond the cover `image`
+  year          Int
+  mileage       String
+  fuelType      String
+  transmission  String
+  seats         Int
+  condition     String
+  features      String // comma-separated; SQLite has no native array type
+  isPopular     Boolean  @default(false)
+  isFeatured    Boolean  @default(false)
+  description   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([brand])
+  @@index([condition])
+}
+
+model Lead {
+  id         String   @id @default(cuid())
+  source     String
+  firstName  String?
+  lastName   String?
+  email      String?
+  phone      String?
+  department String?
+  subject    String?
+  message    String?
+  createdAt  DateTime @default(now())
+}

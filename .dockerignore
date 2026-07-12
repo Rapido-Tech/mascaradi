@@ -1,5 +1,8 @@
 node_modules
+.next
 .git
 .gitignore
 .dockerignore
 .env
+*.db
+*.db-journal

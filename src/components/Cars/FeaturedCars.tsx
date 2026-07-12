@@ -1,81 +1,19 @@
+import Link from "next/link";
 import CarCard from "./CarCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import carSuv from "@/assets/car-suv.jpg";
-import carSports from "@/assets/car-sports.jpg";
-import carSedan from "@/assets/car-sedan.jpg";
+import { prisma } from "@/lib/prisma";
+import { toCarListing } from "@/lib/cars";
 
-const FeaturedCars = () => {
-  const featuredCars = [
-    {
-      id: "1",
-      name: "X5 xDrive40i",
-      brand: "BMW",
-      price: 8500000,
-      originalPrice: 9200000,
-      image: carSuv,
-      year: 2023,
-      mileage: "15,000 km",
-      fuelType: "Petrol",
-      transmission: "Automatic",
-      seats: 7,
-      condition: "Certified" as const,
-      features: [
-        "Leather Seats",
-        "Sunroof",
-        "Navigation",
-        "AWD",
-        "Heated Seats",
-      ],
-      isPopular: true,
-    },
-    {
-      id: "2",
-      name: "911 Carrera",
-      brand: "Porsche",
-      price: 15000000,
-      image: carSports,
-      year: 2024,
-      mileage: "2,500 km",
-      fuelType: "Petrol",
-      transmission: "PDK",
-      seats: 2,
-      condition: "New" as const,
-      features: ["Sport Chrono", "PASM", "Sport Exhaust", "Carbon Interior"],
-    },
-    {
-      id: "3",
-      name: "E-Class E300",
-      brand: "Mercedes-Benz",
-      price: 6200000,
-      originalPrice: 6800000,
-      image: carSedan,
-      year: 2022,
-      mileage: "25,000 km",
-      fuelType: "Petrol",
-      transmission: "9G-Tronic",
-      seats: 5,
-      condition: "Used" as const,
-      features: ["AMG Line", "MBUX", "Air Suspension", "Premium Audio"],
-      isPopular: true,
-    },
-    {
-      id: "4",
-      name: "E-Class E301",
-      brand: "Mercedes-Benz",
-      price: 6200000,
-      originalPrice: 6800000,
-      image: carSedan,
-      year: 2022,
-      mileage: "25,000 km",
-      fuelType: "Petrol",
-      transmission: "9G-Tronic",
-      seats: 5,
-      condition: "Used" as const,
-      features: ["AMG Line", "MBUX", "Air Suspension", "Premium Audio"],
-      isPopular: true,
-    },
-  ];
+const FeaturedCars = async () => {
+  const cars = await prisma.car.findMany({
+    where: { isFeatured: true },
+    orderBy: { price: "desc" },
+  });
+
+  if (cars.length === 0) return null;
+
+  const featuredCars = cars.map(toCarListing);
 
   return (
     <section className="py-16 bg-muted/30">
@@ -99,16 +37,18 @@ const FeaturedCars = () => {
               className="animate-fade-in"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <CarCard car={car} />
+              <CarCard car={car} priority={index === 0} />
             </div>
           ))}
         </div>
 
         {/* View All CTA */}
         <div className="text-center">
-          <Button variant="premium" size="lg">
-            View All Inventory
-            <ArrowRight className="h-5 w-5" />
+          <Button variant="premium" size="lg" asChild>
+            <Link href="/inventory">
+              View All Inventory
+              <ArrowRight className="h-5 w-5" />
+            </Link>
           </Button>
         </div>
       </div>

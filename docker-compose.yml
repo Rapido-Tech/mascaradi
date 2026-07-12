@@ -1,0 +1,19 @@
+services:
+
+  mascaradi:
+    image: ghcr.io/rapido-tech/mascaradi:latest
+    pull_policy: always
+    container_name: mascaradi
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: file:/app/data/prod.db
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_SESSION_SECRET: ${ADMIN_SESSION_SECRET}
+    volumes:
+      - mascaradi-data:/app/data
+    expose:
+      - "3000"
+
+volumes:
+  mascaradi-data:

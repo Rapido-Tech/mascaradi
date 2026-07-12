@@ -1,14 +1,14 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Star } from "lucide-react";
-import heroImage from "@/assets/hero-car.jpg";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: "url(/images/hero-car.jpg)" }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
       </div>
@@ -38,14 +38,18 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button variant="accent" size="lg" className="animate-scale-in">
-                Browse Inventory
-                <ArrowRight className="h-5 w-5" />
+              <Button variant="accent" size="lg" className="animate-scale-in" asChild>
+                <Link href="/inventory">
+                  Browse Inventory
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
               </Button>
-              
-              <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-sm border-white/30 text-primary-foreground hover:bg-white hover:text-primary">
-                <Play className="h-5 w-5" />
-                Watch Our Story
+
+              <Button variant="outline" size="lg" className="bg-white/10 backdrop-blur-sm border-white/30 text-primary-foreground hover:bg-white hover:text-primary" asChild>
+                <Link href="/about">
+                  <Play className="h-5 w-5" />
+                  Watch Our Story
+                </Link>
               </Button>
             </div>
 

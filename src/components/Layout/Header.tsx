@@ -1,4 +1,7 @@
+"use client";
+
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone, Search } from "lucide-react";
@@ -20,7 +23,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">M</span>
             </div>
@@ -28,18 +31,18 @@ const Header = () => {
               <h1 className="text-xl font-bold text-gradient">Mascardi</h1>
               <p className="text-xs text-muted-foreground">Premium Car Dealership</p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -48,10 +51,12 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="hidden sm:flex">
               <Search className="h-4 w-4" />
             </Button>
-            
-            <Button variant="accent" size="sm" className="hidden sm:flex">
-              <Phone className="h-4 w-4" />
-              Call Now
+
+            <Button variant="accent" size="sm" className="hidden sm:flex" asChild>
+              <a href="tel:+254700123456">
+                <Phone className="h-4 w-4" />
+                Call Now
+              </a>
             </Button>
 
             {/* Mobile Menu */}
@@ -72,24 +77,26 @@ const Header = () => {
                       <p className="text-xs text-muted-foreground">Premium Car Dealership</p>
                     </div>
                   </div>
-                  
+
                   <nav className="flex flex-col space-y-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className="text-lg font-medium text-foreground hover:text-primary transition-colors py-2"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </nav>
-                  
+
                   <div className="pt-4 border-t border-border">
-                    <Button variant="accent" className="w-full">
-                      <Phone className="h-4 w-4" />
-                      Call Now
+                    <Button variant="accent" className="w-full" asChild>
+                      <a href="tel:+254700123456">
+                        <Phone className="h-4 w-4" />
+                        Call Now
+                      </a>
                     </Button>
                   </div>
                 </div>
